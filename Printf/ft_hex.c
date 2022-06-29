@@ -40,6 +40,18 @@ int	get_hex_length(unsigned int num)
 	return (i);
 }
 
+void	to_upper(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i] != '\0')
+	{
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
+	}
+}
+
 char	*parse_to_hex(unsigned int num)
 {
 	char			*res;
@@ -67,17 +79,6 @@ char	*parse_to_hex(unsigned int num)
 	return invert_string(res, i);
 }
 
-void	to_upper(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i] != '\0')
-	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] -= 32;
-	}
-}
 
 int	put_hex(unsigned int num, int style)
 {
@@ -91,5 +92,6 @@ int	put_hex(unsigned int num, int style)
 	if (style == 1)
 		to_upper(str);
 	size += put_str(str);
+	//free(str);
 	return (size);
 }
