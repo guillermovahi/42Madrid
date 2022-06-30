@@ -6,7 +6,7 @@
 /*   By: guvargas <guvargas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 10:53:41 by guvargas          #+#    #+#             */
-/*   Updated: 2022/06/29 16:02:59 by guvargas         ###   ########.fr       */
+/*   Updated: 2022/06/30 20:55:33 by guvargas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	check(va_list params, char const *str, int i)
 		printed_chars += put_hex(va_arg(params, unsigned int),1);
 	else if (str[i] == '%')
 		printed_chars += put_char('%');	
+	else
+		return (-1);
 	return printed_chars;
 }
 
