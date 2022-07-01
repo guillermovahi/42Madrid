@@ -6,7 +6,7 @@
 /*   By: guvargas <guvargas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:44:47 by guvargas          #+#    #+#             */
-/*   Updated: 2022/06/29 15:53:57 by guvargas         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:08:53 by guvargas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	put_str(char *s)
 {
 	if (s == NULL)
 	{
-		write(1, "(null)", ft_strlen("(null)"));	
-		return ft_strlen("(null)");
+		write(1, "(null)", ft_strlen("(null)"));
+		return (ft_strlen("(null)"));
 	}
 	else
 	{
-		write(1, s, ft_strlen(s));	
-		return ft_strlen(s);
+		write(1, s, ft_strlen(s));
+		return (ft_strlen(s));
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: guvargas <guvargas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/29 15:44:55 by guvargas          #+#    #+#             */
-/*   Updated: 2022/06/30 20:17:15 by guvargas         ###   ########.fr       */
+/*   Updated: 2022/07/01 17:23:32 by guvargas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	put_num(int n)
 
 int	put_u_num(unsigned int n)
 {
-	int				res;
+	int	res;
 
 	res = 0;
 	if (n < 0)
