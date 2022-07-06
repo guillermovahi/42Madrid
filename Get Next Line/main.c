@@ -1,41 +1,59 @@
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
-
 #include "get_next_line.h"
 
+
+void sum5(int num)
+{
+    static int my_static;
+    int my_int = 1;
+    printf("my_int: %i\n", my_int);
+    printf("my_static: %i\n", my_static);
+    my_static += num;
+    my_int += num;
+}
 char    *get_next_line(int fd)
 {
 
-    int i = 0;
-    char c;
-    char *s = malloc(20);
-    
-    read(fd, &c, 1);
-    s[i++] = c;
-    while(c != 0 && c != '\n' )
-    {
-        
-        read(fd, &c, 1);
-        //printf("letter: %c\n",c);
-        s[i++] = c;
-       
-    }
-    s[i] = '\0';
-    return s;
-}
+	//TODO: declarar dos punteros: 1 fijo (estático) | 1 temporal auxiliar
+	//TODO: se copia la dirección inicial de memoria del puntero estatico y 
+	//TODO: se avanza primero con el estático, para sacar el tamaño del string
+	//TODO: a devolver y hacer malloc. se recorre de nuevo para almacenar la linea
 
+	static char	orig;
+	char		temp;
+	char		*res;
+	int		bytes;
+	int			i;
+
+	bytes = 0;
+	i = -1;
+	temp = orig;
+	while(read(fd, &orig, sizeof(orig)) > 0)
+	{
+		bytes++;
+		// res[i] = c;
+		// printf("letter [%d]: %c\n",i,c);        
+		if (orig == '\n')
+			break;
+		//i++;
+	}
+	res = (char *) malloc(sizeof(char) * (bytes + 1));
+	while(++i < bytes)
+	{
+		read(fd, &temp, sizeof(temp));
+		res[i] = temp;
+		// printf("letter [%d]: %c\n",i,c);        
+		if (temp == '\n')
+			break;
+		//i++;
+	}
+	res[i] = '\0';
+	printf("bytes: %d\n", bytes);
+	//s[i] = '\0';
+	return res;
+}
 int main()
 {
     int fd;
-    // int i = 0;
-    //int sz;
-    //char *s = (char *)calloc(100, sizeof(char));
-
-    // char c;
-    // char s[20];
-
     fd = open("file.txt", O_RDONLY);
     if (fd < 0)
     {
@@ -43,17 +61,37 @@ int main()
         exit(1);
     }
 
-    char *str = get_next_line(fd);
+    // sum5(5);
+    // printf("Vuelvo a ejecutar\n");
+    // sum5(5);
+    // while((str = get_next_line(fd)) != "")
+    // {
+    //     printf("string: %s\n",str);
+    // }
+  
+    char *str;
+    str = get_next_line(fd);
     printf("string: %s\n",str);
     str = get_next_line(fd);
     printf("string: %s\n",str);
-    // read(fd, &c, 1);
-    // while(c != '\n')
-    // {
-    //     read(fd, &c, 1);
-    //     printf("letter: %c\n",c);
-    //     s[i] = c;
-    //     i++;
-    // }
-    // s[i] = '\0';
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
+    str = get_next_line(fd);
+    printf("string: %s\n",str);
 }
