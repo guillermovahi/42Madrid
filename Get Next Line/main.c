@@ -23,29 +23,36 @@ char    *get_next_line(int fd)
 	char		*res;
 	int		bytes;
 	int			i;
+    char    *buff;
 
 	bytes = 0;
 	i = -1;
 	temp = orig;
-	while(read(fd, &orig, sizeof(orig)) > 0)
-	{
-		bytes++;
-		// res[i] = c;
-		// printf("letter [%d]: %c\n",i,c);        
-		if (orig == '\n')
-			break;
-		//i++;
-	}
-	res = (char *) malloc(sizeof(char) * (bytes + 1));
-	while(++i < bytes)
-	{
-		read(fd, &temp, sizeof(temp));
-		res[i] = temp;
-		// printf("letter [%d]: %c\n",i,c);        
-		if (temp == '\n')
-			break;
-		//i++;
-	}
+    buff = malloc(sizeof(char) * (bf + 1));
+    read(fd, buff,bf);
+    printf("this is buff %s\n", buff);
+    read(fd, buff, bf);
+    printf("this is buff %s\n", buff);
+
+	// while(read(fd, &orig, sizeof(orig)) > 0)
+	// {
+	// 	bytes++;
+	// 	// res[i] = c;
+	// 	// printf("letter [%d]: %c\n",i,c);        
+	// 	if (orig == '\n')
+	// 		break;
+	// 	//i++;
+	// }
+	// res = (char *) malloc(sizeof(char) * (bytes + 1));
+	// while(++i < bytes)
+	// {
+	// 	read(fd, &temp, sizeof(temp));
+	// 	res[i] = temp;
+	// 	// printf("letter [%d]: %c\n",i,c);        
+	// 	if (temp == '\n')
+	// 		break;
+	// 	//i++;
+	// }
 	res[i] = '\0';
 	printf("bytes: %d\n", bytes);
 	//s[i] = '\0';

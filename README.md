@@ -7,6 +7,6 @@
 
 ## Working
 
-- Printf
-- Born2beroot
-- Get Next Line
+- Printf (Mandatory part Done)
+- Born2beroot (Started)
+- Get Next Line (Started)
