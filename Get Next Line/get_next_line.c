@@ -6,7 +6,7 @@
 /*   By: guvargas <guvargas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/26 23:05:13 by guvargas          #+#    #+#             */
-/*   Updated: 2022/07/06 16:02:11 by guvargas         ###   ########.fr       */
+/*   Updated: 2022/07/11 21:53:37 by guvargas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,37 +29,24 @@ char    *get_next_line(int fd)
 	//TODO: se avanza primero con el estático, para sacar el tamaño del string
 	//TODO: a devolver y hacer malloc. se recorre de nuevo para almacenar la linea
 
-	static char	orig;
-	char		temp;
 	char		*res;
-	int		bytes;
-	int			i;
+	ssize_t		res_read;
+	
+	res = (char *) malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (res == NULL)
+		return (NULL);
+	
+	res_read = read(fd, res, BUFFER_SIZE);
+	if (res_read == -1)
+	{
+		free(res);
+		return (NULL);
+	}
+	
+	res[res_read] = '\0';
+	
+	
 
-	bytes = 0;
-	i = -1;
-	temp = orig;
-	while(read(fd, &orig, sizeof(orig)) > 0)
-	{
-		bytes++;
-		// res[i] = c;
-		// printf("letter [%d]: %c\n",i,c);        
-		if (orig == '\n')
-			break;
-		//i++;
-	}
-	res = (char *) malloc(sizeof(char) * (bytes + 1));
-	while(++i < bytes)
-	{
-		read(fd, &temp, sizeof(temp));
-		res[i] = temp;
-		// printf("letter [%d]: %c\n",i,c);        
-		if (temp == '\n')
-			break;
-		//i++;
-	}
-	res[i] = '\0';
-	printf("bytes: %d\n", bytes);
-	//s[i] = '\0';
 	return res;
 }
 
