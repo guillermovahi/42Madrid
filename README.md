@@ -4,9 +4,9 @@
 
 - Piscine
 - Libft
+- Printf (Mandatory part Done)
 
 ## Working
 
-- Printf (Mandatory part Done)
 - Born2beroot (Started)
 - Get Next Line (Started)
